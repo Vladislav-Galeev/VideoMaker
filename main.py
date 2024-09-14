@@ -16,15 +16,20 @@ os.system(f"mkdir videos")
 
 for root, _, files in os.walk(directory):
 
-    if len(files) > 0:
+    files_jpg = []
+
+    for file in files:
+        if file.endswith('.jpg'): files_jpg.append(file)
+
+    if len(files_jpg) > 0:
     
-        files.sort()
+        files_jpg.sort()
         
-        name, number = extract_name_and_number(files[0].split('.jpg')[0])
+        name, number = extract_name_and_number(files_jpg[0].split('.jpg')[0])
         
         path = root.replace("\\", "/")
         
-        for filename in files[1:]:
+        for filename in files_jpg[1:]:
         
             name_temp, number_temp = extract_name_and_number(filename.split('.jpg')[0])
             
